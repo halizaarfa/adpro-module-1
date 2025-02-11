@@ -23,6 +23,7 @@
       border-bottom: 2px solid #fecdd3;
       padding-bottom: 0.5rem;
     }
+    /* Create product button */
     .btn-primary {
       background-color: #be123c;
       border-color: #be123c;
@@ -31,6 +32,30 @@
     .btn-primary:hover {
       background-color: #9f1239;
       border-color: #9f1239;
+    }
+    /* Edit button */
+    .btn-edit {
+      background-color: #fecdd3;
+      border-color: #fecdd3;
+      color: #881337;
+      transition: all 0.3s ease;
+    }
+    .btn-edit:hover {
+      background-color: #fda4af;
+      border-color: #fda4af;
+      color: #881337;
+    }
+    /* Delete button */
+    .btn-delete {
+      background-color: #fff1f2;
+      border: 1px solid #fecdd3;
+      color: #be123c;
+      transition: all 0.3s ease;
+    }
+    .btn-delete:hover {
+      background-color: #ffe4e6;
+      border-color: #fda4af;
+      color: #9f1239;
     }
     .table {
       border: none;
@@ -50,10 +75,13 @@
       border: none;
       vertical-align: middle;
     }
+    form {
+      display: inline-block;
+    }
   </style>
 </head>
 <body>
-<div class="container my-2">
+<div class="container">
   <h2>Product List</h2>
   <a th:href="@{/product/create}" class="btn btn-primary btn-sm mb-3">Create Product</a>
 
@@ -62,7 +90,7 @@
     <tr>
       <th scope="col">Product Name</th>
       <th scope="col">Quantity</th>
-      <th scope="col">Edit</th>
+      <th scope="col">Actions</th>
     </tr>
     </thead>
     <tbody>
@@ -70,7 +98,10 @@
       <td th:text="${product.productName}"></td>
       <td th:text="${product.productQuantity}"></td>
       <td>
-        <a th:href="@{'/product/edit/' + ${product.productId}}" class="btn btn-primary btn-sm">Edit</a>
+        <a th:href="@{'/product/edit/' + ${product.productId}}" class="btn btn-edit btn-sm me-2">Edit</a>
+        <form th:action="@{'/product/delete/' + ${product.productId}}" th:method="delete" class="d-inline">
+          <button type="submit" class="btn btn-delete btn-sm">Delete</button>
+        </form>
       </td>
     </tr>
     </tbody>
