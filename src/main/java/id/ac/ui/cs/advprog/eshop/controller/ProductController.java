@@ -18,22 +18,22 @@ public class ProductController {
 
     // Create a new product
     @GetMapping("/create")
-    public String createProductPage(Model model) {
+    public String createProductPage (Model model) {
         Product product = new Product();
         model.addAttribute("product", product);
         return "createProduct";
     }
 
     @PostMapping("/create")
-    public String createProductPost(@ModelAttribute Product product, Model model) {
+    public String createProductPost (@ModelAttribute Product product) {
         service.create(product);
         return "redirect:list";
     }
 
     // List all products
     @GetMapping("/list")
-    public String productListPage(Model model) {
-        List<Product> allProducts = service.findAll();
+    public String productListPage (Model model) {
+        List <Product> allProducts = service.findAll();
         model.addAttribute("products", allProducts);
         return "productList";
     }
@@ -46,7 +46,7 @@ public class ProductController {
         return "editProduct";
     }
 
-    @PostMapping("/edit")
+    @PutMapping("/edit")
     public String editProductPost (@ModelAttribute Product product) {
         service.update(product);
         return "redirect:list";
