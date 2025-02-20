@@ -92,3 +92,6 @@ public class HomePageController {
 ### CI/CD pada Workflow
 
 Saya sudah mengimplementasikan CI/CD pada proyek ini. Saya menggunakan GitHub Actions untuk menjalankan workflow yang saya buat seperti `ci.yml`, `scorecard.yml`, dan `pmd.yml`. Workflow-workflow ini sudah otomatis dijalankan ketika adanya push atau pull request ke suatu branch. Misalnya, `ci.yml` mendefinisikan CI yang menjalankan unit test seluruh unit tests, sementara `pmd.yml` melakukan pengecekan terhadap kode ketika adanya push pada setiap branch. Pada titik ini, saya sudah menerapkan Continuous Integration (CI). Untuk Continuous Deployment (CD), saya menggunakan Koyeb sebagai platform yang akan secara otomatis men-_deploy_ aplikasi saya ketika ada push atau pull request ke suatu branch.
+
+### Code Coverage
+![image](https://github.com/user-attachments/assets/6e1ac403-fff5-4850-8058-205922ea159e)
