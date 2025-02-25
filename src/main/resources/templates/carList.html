@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Car List</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <style>
+    body {
+      background-color: #e6f9fa;
+      color: #00474d;
+    }
+    .container {
+      background-color: white;
+      border-radius: 15px;
+      padding: 2rem;
+      box-shadow: 0 4px 6px rgba(84, 224, 234, 0.1);
+      margin-top: 2rem;
+    }
+    h2 {
+      color: #0a8d98;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      border-bottom: 2px solid #a5e8ed;
+      padding-bottom: 0.5rem;
+    }
+    /* Create car button */
+    .btn-primary {
+      background-color: #0a8d98;
+      border-color: #0a8d98;
+      transition: all 0.3s ease;
+    }
+    .btn-primary:hover {
+      background-color: #07666e;
+      border-color: #07666e;
+    }
+    /* Edit button */
+    .btn-edit {
+      background-color: #a5e8ed;
+      border-color: #a5e8ed;
+      color: #06484e;
+      transition: all 0.3s ease;
+    }
+    .btn-edit:hover {
+      background-color: #7ddbdf;
+      border-color: #7ddbdf;
+      color: #06484e;
+    }
+    /* Delete button */
+    .btn-delete {
+      background-color: #dff8fa;
+      border: 1px solid #a5e8ed;
+      color: #0a8d98;
+      transition: all 0.3s ease;
+    }
+    .btn-delete:hover {
+      background-color: #c5f1f5;
+      border-color: #7ddbdf;
+      color: #07666e;
+    }
+    .table {
+      border: none;
+    }
+    .table thead th {
+      background-color: #a5e8ed;
+      color: #06484e;
+      border: none;
+    }
+    .table tbody tr:nth-child(even) {
+      background-color: #dff8fa;
+    }
+    .table tbody tr:hover {
+      background-color: #c5f1f5;
+    }
+    .table td {
+      border: none;
+      vertical-align: middle;
+    }
+    form {
+      display: inline-block;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h2>Car List</h2>
+  <a th:href="@{/car/createCar}" class="btn btn-primary btn-sm mb-3">Create Car</a>
+
+  <table class="table table-responsive-md">
+    <thead>
+    <tr>
+      <th scope="col">Car Name</th>
+      <th scope="col">Color</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="car: ${cars}">
+      <td th:text="${car.carName}"></td>
+      <td th:text="${car.carColor}"></td>
+      <td th:text="${car.carQuantity}"></td>
+      <td>
+        <a th:href="@{'/car/editCar/' + ${car.carId}}" class="btn btn-edit btn-sm me-2">Edit</a>
+        <form th:action="@{/car/deleteCar}" method="post" class="d-inline">
+          <input type="hidden" th:name="carId" th:value="${car.carId}" />
+          <button type="submit" class="btn btn-delete btn-sm">Delete</button>
+        </form>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+</body>
+</html>
