@@ -35,6 +35,9 @@ Menurut saya, _functional test suite_ tersebut berpotensi untuk menurunkan kuali
 
 </details>
 
+<details>
+<summary>Module 2: CI/CD Dev Ops</summary>
+
 # Module 2: CI/CD & Dev Ops
 
 ## Reflection
@@ -95,3 +98,44 @@ Saya sudah mengimplementasikan CI/CD pada proyek ini. Saya menggunakan GitHub Ac
 
 ### Code Coverage
 ![image](https://github.com/user-attachments/assets/6e1ac403-fff5-4850-8058-205922ea159e)
+
+</details>
+
+# Module 3: Maintainability & OO Principles
+
+## Reflection
+
+### Prinsip S.O.L.I.D yang Diterapkan
+#### 1. **Single Responsibility Principle (SRP)**
+Diterapkan pada `HomePageController`, `ProductController`, dan `CarController`.
+- `HomePageController`: melakukan mapping dengan endpoint `/`.
+- `ProductController`: melakukan mapping dengan endpoint `/product`.
+- `CarController`: melakukan mapping dengan endpoint `/car`.
+
+Oleh karena itu, saya membuat tiga class yang berbeda.
+
+#### 2. **Liskov Substitution Principle (LSP)**
+Pada branch `before-solid`, `ProductController.java` memiliki subclass yaitu `CarController`. Padahal, `CarController` memiliki perilaku yang berbeda dengan `ProductController`.
+Misalnya pada `editProductPost`, `ProductController` menggunakan method `PUT` sementara `CarController` menggunakan method POST.
+Dengan begitu, objek dari superclass tidak dapat digantikan oleh objek dari subclass-nya dan menyalahi LSP.
+
+Solusi yang saya terapkan adalah menghapus extends pada `CarController` dan membuat `CarController` menjadi class tersendiri pada file yang berbeda.
+
+#### 3. **Interface Segregation Principle (ISP)**
+Sudah diterapkan pada `CarService`. Menurut saya, tidak perlu dipisah lagi karena interface ini fokus pada satu hal yaitu CRUD (Create, Read, Update, Delete) untuk `Car`.
+
+#### 4. **Dependency Inversion Principle (DIP)**
+Pada branch `before-solid`, `CarController` bergantung langsung dengan implementation, `CarServiceImpl`. Seharusnya, `CarController` bergantung dengan interface `CarService`.
+
+Oleh karena itu, saya mengganti tipe data dari variabel `carService` pada `CarController` menjadi `CarService`, dependency diinjeksi melalui constructor.
+
+### Kelebihan dari Menerapkan Prinsip S.O.L.I.D
+Dengan SRP, kode menjadi lebih mudah di-maintain. Perubahan pada suatu fitur tidak akan berdampak besar ke bagian lain.
+Dengan DIP, seperti pada contoh `CarController` yang bergantung pada interface alih-alih implementation, logika kode dapat diubah seiring waktu tanpa mengubah kode yang bergantung padanya.
+Kode juga dapat dengan mudah diperluas tanpa perlu modifikasi, sehingga meningkatkan reusability di mana kode dapat digunakan kembali.
+Selain itu, jika bekerja dalam tim, penerapan S.O.L.I.D akan mempermudah code review karena kode akan lebih mudah dipahami anggota tim.
+
+### Kekurangan dari Tidak Menerapkan Prinsip S.O.L.I.D
+Menurut saya, kekurangan dari tidak diterapkannya S.O.L.I.D adalah kebalikan dari kelebihan-kelebihannya. Kode akan lebih sulit dikelola dan dipahami. Unit test juga akan sulit dilakukan. Ketika ada modifikasi kode, dibutuhkan effort yang tinggi karena modifikasi harus dilakukan di banyak bagian lainnya.
+Misalnya, jika SRP tidak diterapkan, orang lain yang membaca kode mungkin akan kebingungan mencari kode bagian mana yang mengatur mapping dengan endpoint `/car`.
+Jika DIP tidak diterapkan dan `CarController` bergantung langsung pada `CarServiceImpl`, setiap perubahan pada `CarServiceImpl` bisa merusak `CarController`.
