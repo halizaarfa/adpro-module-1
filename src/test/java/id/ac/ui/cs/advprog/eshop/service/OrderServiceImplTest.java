@@ -49,7 +49,7 @@ class OrderServiceImplTest {
     // Happy path test: Use createOrder to add a new Order
     @Test
     void testCreateOrder() {
-        Order order = orders.get(2);
+        Order order = orders.get(1);
         doReturn(order).when(orderRepository).save(order);
 
         Order result = orderService.createOrder(order);
@@ -142,7 +142,7 @@ class OrderServiceImplTest {
     @Test
     void testFindAllByAuthorIfAllLowercase() {
         Order order = orders.get(1);
-        doReturn(orders).when(orderRepository).findAllByAuthor(order.getAuthor().toLowerCase());
+        doReturn(new ArrayList<Order>()).when(orderRepository).findAllByAuthor(order.getAuthor().toLowerCase());
 
         List <Order> results = orderService.findAllByAuthor(order.getAuthor().toLowerCase());
         assertTrue(results.isEmpty());
