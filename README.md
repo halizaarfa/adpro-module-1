@@ -101,6 +101,9 @@ Saya sudah mengimplementasikan CI/CD pada proyek ini. Saya menggunakan GitHub Ac
 
 </details>
 
+<details>
+<summary>Module 3: Maintainbility & OO Principles</summary>
+
 # Module 3: Maintainability & OO Principles
 
 ## Reflection
@@ -139,3 +142,25 @@ Selain itu, jika bekerja dalam tim, penerapan S.O.L.I.D akan mempermudah code re
 Menurut saya, kekurangan dari tidak diterapkannya S.O.L.I.D adalah kebalikan dari kelebihan-kelebihannya. Kode akan lebih sulit dikelola dan dipahami. Unit test juga akan sulit dilakukan. Ketika ada modifikasi kode, dibutuhkan effort yang tinggi karena modifikasi harus dilakukan di banyak bagian lainnya.
 Misalnya, jika SRP tidak diterapkan, orang lain yang membaca kode mungkin akan kebingungan mencari kode bagian mana yang mengatur mapping dengan endpoint `/car`.
 Jika DIP tidak diterapkan dan `CarController` bergantung langsung pada `CarServiceImpl`, setiap perubahan pada `CarServiceImpl` bisa merusak `CarController`.
+
+</details>
+
+# Module 4: Refactoring and TDD
+
+## Reflection
+
+#### Refleksi Terhadap TTD Flow
+Alur TDD yang digunakan pada implementasi dengan mengikuti siklus Red-Green-Refactor
+ini menurut saya sudah cukup terstruktur dan berguna untuk memastikan setiap fungsionalitas di-implement secara bertahap.
+Menurut saya pribadi, melakukannya dengan cara seperti ini sedikit sulit karena rasanya
+seperti coding secara terbalik. Selain itu, dengan membuat test terlebih dulu, saya harus memastikan
+bahwa test meng-cover implementasi yang akan dilakukan. Namun, lepas dari kesulitan saya yang mungkin juga didasari
+pertama kalinya mengikuti alur TTD, flow ini membantu mendorong untuk memenuhi kesesuaian, maintanability, serta workflow
+yang produktif.
+
+#### Implementasi F.I.R.S.T
+Saya sudah berusaha untuk mengimplementasi prinsip F.I.R.S.T dalam menuliskan unit test. 
+Sejauh ini, keseluruhan aspek dari prinsip tersebut yakni Fast, Independent, Repeatable, Self-validating, serta Timely 
+sudah terpenuhi. Namun, di luar dari hal tersebut, kode saya belum mencapai 100% code coverage. Oleh karena itu, evaluasi 
+ke depannya adalah mungkin saya perlu menambahkan lebih banyak test case untuk meningkatkan cakupan dari test.
+Setelah itu, saya dapat memastikan prinsip F.I.R.S.T diterapkan secara optimal. 
